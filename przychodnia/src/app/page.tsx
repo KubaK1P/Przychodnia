@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { LoadingGIF } from "./components/loadingGIF";
 
 export default function Home() {
   return (
@@ -20,8 +21,10 @@ export default function Home() {
             </code>
             .
           </li>
-          <li>Save and see your changes instantly.</li>
+          <li>Hello world</li>
         </ol>
+
+        <LoadingGIF></LoadingGIF>
 
         <div className="flex gap-4 items-center flex-col sm:flex-row">
           <a
