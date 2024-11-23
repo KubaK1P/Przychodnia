@@ -7,7 +7,7 @@ const LoginForm = () => {
   };
 
   return (
-    <div className="min-h-screen min-w-[15rem] flex items-center justify-center bg-slate-300">
+    <div className="w-[100%] flex items-center justify-center bg-slate-300">
       <div className="w-full max-w-md p-8 bg-white shadow-md rounded-lg">
         <h1 className="text-2xl font-bold text-center mb-6">Logowanie</h1>
         <form onSubmit={handleLogin} className="space-y-4">
@@ -61,7 +61,7 @@ const RegisterForm = () => {
   };
 
   return (
-    <div className="min-h-screen min-w-[15rem] flex items-center justify-center bg-slate-300">
+    <div className="w-[100%] flex items-center justify-center bg-slate-300">
       <div className="w-full max-w-md p-8 bg-white shadow-md rounded-lg">
         <h1 className="text-2xl font-bold text-center mb-6">Rejestracja</h1>
         <form onSubmit={handleRegister} className="space-y-4">
