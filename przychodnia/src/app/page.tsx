@@ -4,7 +4,7 @@ export default function Home() {
   return (
     <main className="w-2/3 flex flex-wrap m-4 h-[90vh]">
       <h1 className="basis-[100%] text-4xl font-bold tracking-wide h-[8rem] mt-[5rem]">
-        <span className="bg-slate-300 p-4 rounded-md shadow-md">
+        <span className="bg-sky-200 p-4 rounded-md shadow-md">
           Przychodnia
         </span>
       </h1>

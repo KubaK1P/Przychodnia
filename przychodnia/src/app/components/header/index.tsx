@@ -4,7 +4,7 @@ import Link from "next/link";
 
 export const Header = (props: { user: string | null }) => {
   return (
-    <header className="basis-[100%] w-full  sticky top-0 flex flex-row items-center px-2 gap-2 bg-slate-500 h-[6%]">
+    <header className="basis-[100%] w-full  sticky top-0 flex flex-row items-center px-2 gap-2 bg-sky-400 h-[6%]">
       <Link href="/" className="font-xl text-2xl font-semibold text-slate-950 hover:underline mr-auto tracking-wide p-3">
         Przychodnia
       </Link>

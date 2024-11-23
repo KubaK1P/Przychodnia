@@ -6,7 +6,7 @@ export default function PrzychodniaDesc({ imageSrc, content }: {  imageSrc: stri
     return (
         <div
         className="m-6
-      basis-[100%] flex justify-between items-center bg-slate-200 p-4 rounded-md shadow-md"
+      basis-[100%] flex justify-between items-center bg-sky-100 p-4 rounded-md shadow-md"
       >
         <p className="basis-[40%] text-gray-800">
         {content}
