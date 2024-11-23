@@ -4,9 +4,9 @@ import Link from "next/link";
 
 export const Header = (props: { user: string | null }) => {
   return (
-    <div className="w-screen h-10 sticky top-0 flex flex-row items-center px-2 gap-2">
-      <Link href="/" className="font-xl hover:underline mr-auto">
-        Cukiernia 3P
+    <header className="basis-[100%] w-full  sticky top-0 flex flex-row items-center px-2 gap-2 bg-slate-500 h-[6%]">
+      <Link href="/" className="font-xl text-2xl font-semibold text-slate-950 hover:underline mr-auto tracking-wide p-3">
+        Przychodnia
       </Link>
       {props.user ? (
         <>
@@ -25,18 +25,18 @@ export const Header = (props: { user: string | null }) => {
         <>
           <Link
             href="/auth/login"
-            className=" p-1 rounded-md"
+            className="rounded-md p-3"
           >
             Zaloguj się
           </Link>
           <Link
             href="/auth/signup"
-            className=" p-1 rounded-md"
+            className="rounded-md p-3"
           >
             Zarejestruj się
           </Link>
         </>
       )}
-    </div>
+    </header>
   );
 };
