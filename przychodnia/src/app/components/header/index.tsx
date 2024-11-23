@@ -30,7 +30,7 @@ export const Header = (props: { user: string | null }) => {
             Zaloguj się
           </Link>
           <Link
-            href="/auth/signup"
+            href="/auth/register"
             className="rounded-md p-3"
           >
             Zarejestruj się
