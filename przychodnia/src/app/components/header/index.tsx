@@ -10,6 +10,12 @@ export const Header = (props: { user: string | null }) => {
       </Link>
       {props.user ? (
         <>
+          <Link
+            href="/profile"
+            className=" p-1 rounded-md"
+          >
+            Twoja tablica
+          </Link>
           <div className="">
             Zalogowano jako{" "}
             <span className="text-black font-bold">{props.user}</span>
@@ -20,6 +26,7 @@ export const Header = (props: { user: string | null }) => {
           >
             Wyloguj się
           </Link>
+          
         </>
       ) : (
         <>

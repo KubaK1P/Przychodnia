@@ -31,7 +31,7 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased flex justify-center`}
       > 
         <div className=" w-full flex flex-wrap justify-center bg-sky-50 h-[100vh]">
-          <Header user={null}></Header>
+          <Header user="Jakub"></Header>
           {children}
           <Footer />
         </div>
