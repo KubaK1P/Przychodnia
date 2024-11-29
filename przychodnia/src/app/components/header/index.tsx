@@ -3,11 +3,17 @@
 import Link from "next/link";
 import { useEffect } from "react";
 
+interface DataType {
+  message: string;
+}
+
 export const Header = (props: { user: string | null }) => {
+  
   useEffect(()=>{
     fetch("http://localhost:3000/api/registration", {method: "POST", body: JSON.stringify({"username":"a", "password":"2"})}).then(async (res)=>{
-      console.log(res)
-      await res.json()
+      console.log(res);
+      const data: DataType = await res.json();
+      console.log(data.message);
     })
   }, [])
   return (
