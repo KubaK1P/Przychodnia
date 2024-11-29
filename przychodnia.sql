@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Czas generowania: 15 Lis 2024, 20:52
+-- Czas generowania: 29 Lis 2024, 20:08
 -- Wersja serwera: 10.4.24-MariaDB
 -- Wersja PHP: 8.1.6
 
@@ -35,6 +35,17 @@ CREATE TABLE `grafik` (
   `godzina_do` time DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Zrzut danych tabeli `grafik`
+--
+
+INSERT INTO `grafik` (`id_grafiku`, `id_lekarza`, `dzien_tygodnia`, `godzina_od`, `godzina_do`) VALUES
+(1, 1, 'Poniedziałek', '08:00:00', '12:00:00'),
+(2, 2, 'Wtorek', '09:00:00', '13:00:00'),
+(3, 3, 'Środa', '10:00:00', '14:00:00'),
+(4, 4, 'Czwartek', '11:00:00', '15:00:00'),
+(5, 5, 'Piątek', '12:00:00', '16:00:00');
+
 -- --------------------------------------------------------
 
 --
@@ -49,6 +60,17 @@ CREATE TABLE `lekarz` (
   `telefon` varchar(15) NOT NULL,
   `email` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Zrzut danych tabeli `lekarz`
+--
+
+INSERT INTO `lekarz` (`id_lekarza`, `imie`, `nazwisko`, `id_specjalizacji`, `telefon`, `email`) VALUES
+(1, 'Jan', 'Kowalski', 1, '123456789', 'jan.kowalski@example.com'),
+(2, 'Anna', 'Nowak', 2, '987654321', 'anna.nowak@example.com'),
+(3, 'Piotr', 'Zieliński', 3, '555123456', 'piotr.zielinski@example.com'),
+(4, 'Maria', 'Wiśniewska', 4, '666234567', 'maria.wisniewska@example.com'),
+(5, 'Tomasz', 'Mazur', 5, '777345678', 'tomasz.mazur@example.com');
 
 -- --------------------------------------------------------
 
@@ -67,6 +89,13 @@ CREATE TABLE `pacjent` (
   `email` varchar(100) NOT NULL,
   `haslo` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Zrzut danych tabeli `pacjent`
+--
+
+INSERT INTO `pacjent` (`id_pacjenta`, `imie`, `nazwisko`, `data_urodzenia`, `pesel`, `adres`, `telefon`, `email`, `haslo`) VALUES
+(1, 'test', 'test', '2024-11-29', '00000000000', 'adres', '000000000', 'test@test.com', 'riowreprirweorwpreow');
 
 -- --------------------------------------------------------
 
@@ -94,6 +123,17 @@ CREATE TABLE `specjalizacja` (
   `nazwa_specjalizacji` varchar(70) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Zrzut danych tabeli `specjalizacja`
+--
+
+INSERT INTO `specjalizacja` (`id_specjalizacji`, `nazwa_specjalizacji`) VALUES
+(1, 'Kardiologia'),
+(2, 'Neurologia'),
+(3, 'Ortopedia'),
+(4, 'Dermatologia'),
+(5, 'Pediatria');
+
 -- --------------------------------------------------------
 
 --
@@ -103,9 +143,20 @@ CREATE TABLE `specjalizacja` (
 CREATE TABLE `usluga` (
   `id_uslugi` int(11) NOT NULL,
   `nazwa_uslugi` varchar(100) NOT NULL,
-  `opis_uslugi` text NOT NULL,
+  `opis_uslugi` text DEFAULT NULL,
   `cena_uslugi` decimal(12,2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Zrzut danych tabeli `usluga`
+--
+
+INSERT INTO `usluga` (`id_uslugi`, `nazwa_uslugi`, `opis_uslugi`, `cena_uslugi`) VALUES
+(1, 'Konsultacja kardiologiczna', NULL, '200.00'),
+(2, 'Badanie neurologiczne', NULL, '180.00'),
+(3, 'Wizyta ortopedyczna', NULL, '220.00'),
+(4, 'Porada dermatologiczna', NULL, '150.00'),
+(5, 'Konsultacja pediatryczna', NULL, '170.00');
 
 -- --------------------------------------------------------
 
@@ -202,19 +253,19 @@ ALTER TABLE `wizyta`
 -- AUTO_INCREMENT dla tabeli `grafik`
 --
 ALTER TABLE `grafik`
-  MODIFY `id_grafiku` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_grafiku` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT dla tabeli `lekarz`
 --
 ALTER TABLE `lekarz`
-  MODIFY `id_lekarza` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_lekarza` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT dla tabeli `pacjent`
 --
 ALTER TABLE `pacjent`
-  MODIFY `id_pacjenta` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_pacjenta` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT dla tabeli `rozliczenie`
@@ -226,13 +277,13 @@ ALTER TABLE `rozliczenie`
 -- AUTO_INCREMENT dla tabeli `specjalizacja`
 --
 ALTER TABLE `specjalizacja`
-  MODIFY `id_specjalizacji` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_specjalizacji` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT dla tabeli `usluga`
 --
 ALTER TABLE `usluga`
-  MODIFY `id_uslugi` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_uslugi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT dla tabeli `usluga_wizyta`
