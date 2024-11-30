@@ -1,26 +1,37 @@
-"use client";
-
 import Link from "next/link";
+import { getCookie } from "@app/app/lib/cookies";
+import { headers } from "next/headers";
 // import { useEffect } from "react";
 
 // export interface registrationGETResponseInterface {
 //   userExists: string
 // }
+interface Session {
+  username: string;
+}
 
-export const Header = (props: { user: string | null }) => {
-  //
+export const Header = () => {
+
+    //  Access cookies from the request headers (server-side)
+  const sessionCookie = getCookie(headers(), 'session');
+  let session;
+  const doesntExistCookie: boolean = !sessionCookie;
+   if (doesntExistCookie) {
+    console.log("no cookie");
+     session = {};
+   } else {
+     session = sessionCookie as Session;
+     
+  }
+   // Check if the session exists and extract the username
   
-// useEffect(()=>{
-//     fetch("http://localhost:3000/api/registration", {method: "POST", body: JSON.stringify({ "username": "a", "password": "2" })}).then(async (res)=>{
-//       console.log(res);
-//     })
-//   }, []) 
+
   return (
     <header className="basis-[100%] w-full  sticky top-0 flex flex-row items-center px-2 gap-2 bg-sky-400 h-[6%]">
       <Link href="/" className="font-xl text-2xl font-semibold text-slate-950 hover:underline mr-auto tracking-wide p-3">
         Przychodnia
       </Link>
-      {props.user ? (
+      {!doesntExistCookie ? (
         <>
           <Link
             href="/profile"
@@ -30,10 +41,10 @@ export const Header = (props: { user: string | null }) => {
           </Link>
           <div className="">
             Zalogowano jako{" "}
-            <span className="text-black font-bold">{props.user}</span>
+            <span className="text-black font-bold">{session.username}</span>
           </div>
           <Link
-            href="/api/logout"
+            href="/auth/logout"
             className=" p-1 rounded-md"
           >
             Wyloguj się
