@@ -3,6 +3,8 @@ import localFont from "next/font/local";
 import { Header } from "./components/header";
 import "./globals.css";
 import Footer from "./components/footer";
+// import { getCookie } from "./lib/cookies";
+// import { headers } from 'next/headers';
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -25,6 +27,11 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+   // Access cookies from the request headers (server-side)
+  //  const sessionCookie = getCookie(headers(), 'session');
+
+  //  // Check if the session exists and extract the username
+  //  const username = sessionCookie && typeof sessionCookie === 'object' ? sessionCookie.firstName : null;
   return (
     <html lang="en">
       <body

@@ -1,11 +1,25 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, FormEvent } from "react";
 import Link from "next/link";
 import { RegistrationRoutePOSTData } from "@app/app/api/registration/route";
 const LoginForm = () => {
-  const handleLogin = () => {
-    // do something
+  const [username, setUsername] = useState<string>('');
+  const [password, setPassword] = useState("");
+  const handleLogin = async (e: FormEvent) => {
+    e.preventDefault();
+    const res = await fetch('/api/login', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ username , password}),
+    });
+
+    if (res.ok) {
+      window.location.href = '/profile';
+    } else {
+      alert('Login failed');
+    }
   };
+
 
   return (
     <div className="w-[100%] flex items-center justify-center bg-sky-100">
@@ -26,6 +40,7 @@ const LoginForm = () => {
               name="email"
               required
               className="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-sky-500 focus:border-sky-500"
+              onChange={(e) => {setUsername(e.target.value)}}
             />
           </div>
           {/* Password */}
@@ -42,6 +57,7 @@ const LoginForm = () => {
               name="password"
               required
               className="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-sky-500 focus:border-sky-500"
+              onChange={(e) => {setPassword(e.target.value)}}
             />
           </div>
           <button

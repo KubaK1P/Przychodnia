@@ -33,7 +33,7 @@ export const Header = (props: { user: string | null }) => {
             <span className="text-black font-bold">{props.user}</span>
           </div>
           <Link
-            href="/auth/logout"
+            href="/api/logout"
             className=" p-1 rounded-md"
           >
             Wyloguj się
