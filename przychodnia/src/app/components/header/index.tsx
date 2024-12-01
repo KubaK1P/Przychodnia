@@ -10,21 +10,21 @@ interface Session {
   username: string;
 }
 
-export const Header = () => {
+export const Header = async () => {
 
-    //  Access cookies from the request headers (server-side)
-  const sessionCookie = getCookie(headers(), 'session');
+  //  Access cookies from the request headers (server-side)
+  const sessionCookie = getCookie(await headers(), 'session');
   let session;
   const doesntExistCookie: boolean = !sessionCookie;
-   if (doesntExistCookie) {
+  if (doesntExistCookie) {
     console.log("no cookie");
-     session = {};
-   } else {
-     session = sessionCookie as Session;
-     
+    session = {};
+  } else {
+    session = sessionCookie as Session;
+
   }
-   // Check if the session exists and extract the username
-  
+  // Check if the session exists and extract the username
+
 
   return (
     <header className="basis-[100%] w-full  sticky top-0 flex flex-row items-center px-2 gap-2 bg-sky-400 h-[6%]">
@@ -49,7 +49,7 @@ export const Header = () => {
           >
             Wyloguj się
           </Link>
-          
+
         </>
       ) : (
         <>

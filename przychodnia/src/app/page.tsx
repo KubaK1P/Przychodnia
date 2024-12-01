@@ -10,19 +10,8 @@ export default function Home() {
       </h1>
       <PrzychodniaDesc
         imageSrc="/przychodnia.jpg"
-        content="<b>Przychodnia Zdrowie+ </b>to nowoczesna placówka medyczna oferująca
-          kompleksową opiekę zdrowotną. Nasz zespół doświadczonych lekarzy
-          specjalistów zapewnia konsultacje w takich dziedzinach jak pediatria,
-          kardiologia, dermatologia, czy medycyna rodzinna. Dzięki intuicyjnej
-          platformie online możesz szybko i wygodnie: Umówić się na wizytę w
-          dogodnym terminie, Sprawdzić grafik lekarzy, Przejrzeć historię swoich
-          wizyt. Dbamy o Twój komfort i zdrowie, dlatego łączymy nowoczesne
-          technologie z indywidualnym podejściem do każdego pacjenta. Zapraszamy
-          do Przychodni Zdrowie+ – Twojego miejsca na zdrowie!"
-      />
-      <PrzychodniaDesc
-      imageSrc="/dziewczynka.jpg"
-      content="<b>Przychodnia Zdrowie+ </b>to nowoczesna placówka medyczna oferująca
+      >
+        <b>Przychodnia Zdrowie+ </b>to nowoczesna placówka medyczna oferująca
         kompleksową opiekę zdrowotną. Nasz zespół doświadczonych lekarzy
         specjalistów zapewnia konsultacje w takich dziedzinach jak pediatria,
         kardiologia, dermatologia, czy medycyna rodzinna. Dzięki intuicyjnej
@@ -30,8 +19,21 @@ export default function Home() {
         dogodnym terminie, Sprawdzić grafik lekarzy, Przejrzeć historię swoich
         wizyt. Dbamy o Twój komfort i zdrowie, dlatego łączymy nowoczesne
         technologie z indywidualnym podejściem do każdego pacjenta. Zapraszamy
-        do Przychodni Zdrowie+ – Twojego miejsca na zdrowie!"
-    />
+        do Przychodni Zdrowie+ – Twojego miejsca na zdrowie!
+      </PrzychodniaDesc>
+      <PrzychodniaDesc
+        imageSrc="/dziewczynka.jpg"
+      >
+        <b>Przychodnia Zdrowie+ </b>to nowoczesna placówka medyczna oferująca
+        kompleksową opiekę zdrowotną. Nasz zespół doświadczonych lekarzy
+        specjalistów zapewnia konsultacje w takich dziedzinach jak pediatria,
+        kardiologia, dermatologia, czy medycyna rodzinna. Dzięki intuicyjnej
+        platformie online możesz szybko i wygodnie: Umówić się na wizytę w
+        dogodnym terminie, Sprawdzić grafik lekarzy, Przejrzeć historię swoich
+        wizyt. Dbamy o Twój komfort i zdrowie, dlatego łączymy nowoczesne
+        technologie z indywidualnym podejściem do każdego pacjenta. Zapraszamy
+        do Przychodni Zdrowie+ – Twojego miejsca na zdrowie!
+      </PrzychodniaDesc>
     </main>
   );
 }
