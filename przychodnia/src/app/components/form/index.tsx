@@ -10,7 +10,7 @@ const LoginForm = () => {
     const res = await fetch('/api/login', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ username , password}),
+      body: JSON.stringify({ username, password }),
     });
 
     if (res.ok) {
@@ -40,7 +40,7 @@ const LoginForm = () => {
               name="email"
               required
               className="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-sky-500 focus:border-sky-500"
-              onChange={(e) => {setUsername(e.target.value)}}
+              onChange={(e) => { setUsername(e.target.value) }}
             />
           </div>
           {/* Password */}
@@ -57,7 +57,7 @@ const LoginForm = () => {
               name="password"
               required
               className="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-sky-500 focus:border-sky-500"
-              onChange={(e) => {setPassword(e.target.value)}}
+              onChange={(e) => { setPassword(e.target.value) }}
             />
           </div>
           <button
@@ -90,7 +90,8 @@ const RegisterForm = () => {
   const [phone, setPhone] = useState("");
   const [password, setPassword] = useState("");
 
-  const handleRegister = async () => {
+  const handleRegister = async (e: FormEvent) => {
+    e.preventDefault()
     // await fetch(`http://localhost:3000/api/registration?username=${email}`, { method: "GET" }).then(async (res) => {
     //   console.log(res);
     //   const data: registrationGETResponseInterface = await res.json();
