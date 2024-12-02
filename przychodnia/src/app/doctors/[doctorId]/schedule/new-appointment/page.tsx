@@ -29,6 +29,7 @@ export default async function Page() {
       <option value="zakonczona">zakończona</option>
     </select>
     <select name="id_lekarza">
+      // each item in the list should have unique key prop 
       {
         lekarze.map(lekarz =>
           <option value={lekarz.id_lekarza}>{lekarz.imie} {lekarz.nazwisko}</option>
