@@ -11,7 +11,7 @@ export default function DashboardLayout({
             <nav>
                 <ul>
                     <li><Link href="/profile/appointments">Wizyty</Link></li>
-                    <li><Link href="/profile/scheduleAppointment">Dodaj wizytę</Link></li>
+                    <li><Link href="/doctors/greg/schedule/new-appointment">Dodaj wizytę</Link></li>
                     <li><Link href="/profile/settings">Ustawienia</Link></li>
                 </ul>
             </nav>

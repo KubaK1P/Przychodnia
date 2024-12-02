@@ -19,7 +19,12 @@ export default async function Profile() {
     //   const session: Session = typeof sessionCookie === 'object' ? sessionCookie : { username: '' };
     const session = sessionCookie as Session;
 
-  return <h1>Welcome, {session.username}</h1>;
+  return (<main className="w-2/3 flex flex-wrap m-4 min-h-[90vh]">
+    <h1>Welcome, {session.username}</h1> 
+    
+    <p><br />Here will be user data probably</p>
+    </main>
+  );
 }
 
 
