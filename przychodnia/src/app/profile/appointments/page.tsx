@@ -40,7 +40,7 @@ export default async function Page() {
     {
       //@ts-ignore
       wizyty.map(
-        (wizyta: WizytaPremium) => <div key={wizyta.id_wizyty}>{wizyta.powod_wizyty} ({wizyta.status_wizyty}) - {wizyta.l_imie} {wizyta.l_nazwisko} </div>
+        (wizyta: WizytaPremium) => <div key={wizyta.id_wizyty}><Link href={`./appointments/${wizyta.id_wizyty}`}>{wizyta.powod_wizyty} ({wizyta.status_wizyty})</Link> - {wizyta.l_imie} {wizyta.l_nazwisko} </div>
       )
     }
 
