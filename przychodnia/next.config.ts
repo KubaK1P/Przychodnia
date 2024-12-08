@@ -1,12 +1,8 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  env: {
-    DB_HOST: "localhost",
-    DB_USER: "root",
-    DB_PASSWORD: "JezuUfamTobie",
-    DB_NAME: "przychodnia"
-  }
+  // grubasie, masz .env.local
+  // nie commituje się hasła do repozytorium
 };
 
 export default nextConfig;
