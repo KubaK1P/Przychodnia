@@ -56,6 +56,9 @@ export default async function Page() {
     </select>
 
 
-    <input type="submit" className="p-2 border-2 rounded-md hover:bg-gray-200" />
-  </form></main>
+    <input type="submit" className="p-2 border-2 rounded-md hover:bg-gray-200 hover:text-xl hover:underline" />
+  </form>
+    <Link href="/profile" className="text-sky-600 hover:text-xl hover:underline">Wróć</Link>
+
+  </main>
 }
