@@ -7,8 +7,8 @@ export default async function Page() {
   const connection = await mysql.createConnection(db_settings);
 
 
-  const [_l, lekarze] = await connection.execute(`SELECT * FROM lekarz;`);
-  const [_p, pacjenty] = await connection.execute(`SELECT * FROM pacjent;`);
+  const [lekarze, _l] = await connection.execute(`SELECT * FROM lekarz;`);
+  const [pacjenty, _p] = await connection.execute(`SELECT * FROM pacjent;`);
 
 
 
@@ -17,29 +17,28 @@ export default async function Page() {
     const db_settings: IDBSettings = GetDBSettings();
     const connection = await mysql.createConnection(db_settings);
 
-    await connection.execute(`SELECT * FROM pacjent WHERE pacjent.email = ? ;`, ["a"]);
+    await connection.execute(`INSERT INTO wizyta VALUES(null, ?, ?, ?, ?, ?) ;`, [d.get("data_wizyty")?.toString(), d.get("id_pacjenta")?.toString(), d.get("id_lekarza")?.toString(), d.get("powod_wizyty")?.toString(), d.get("status_wizyty")?.toString()]);
 
 
   }}>
     <input type="date" name="data_wizyty" />
-    <input type="text" name="powod_wizyty" />
+    <input type="text" name="powod_wizyty" placeholder="powód wizyty?" />
     <select name="status_wizyty">
       <option value="zaplanowana">zaplanowana</option>
       <option value="odwolana">odwołana</option>
       <option value="zakonczona">zakończona</option>
     </select>
     <select name="id_lekarza">
-      // each item in the list should have unique key prop 
       {
         lekarze.map(lekarz =>
-          <option value={lekarz.id_lekarza}>{lekarz.imie} {lekarz.nazwisko}</option>
+          <option key={lekarz.id_lekarza} value={lekarz.id_lekarza}>{lekarz.imie} {lekarz.nazwisko}</option>
         )
       }
     </select>
     <select name="id_pacjenta">
       {
         pacjenty.map(pacant =>
-          <option value={pacant.id_pacjenta}>{pacant.imie} {pacant.nazwisko}</option>
+          <option key={pacant.id_pacjenta} value={pacant.id_pacjenta}>{pacant.imie} {pacant.nazwisko}</option>
         )
       }
 
