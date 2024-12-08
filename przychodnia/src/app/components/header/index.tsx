@@ -6,7 +6,7 @@ import { headers } from "next/headers";
 // export interface registrationGETResponseInterface {
 //   userExists: string
 // }
-interface Session {
+export interface Session {
   username: string;
 }
 
