@@ -42,15 +42,23 @@ export default async function Page({ params }: { params: Promise<{ appointmentId
     notFound();
     // zwróci 404 i dokument not-found.tsx
   }
+  //@ts-ignore
+  const wizyta = wizyty[0];
 
 
   return <main className="min-h-[80vh] w-full flex flex-col justify-center items-center">
-    {
-      //@ts-ignore
-      wizyty.map(
-        (wizyta: WizytaPremium) => <div key={wizyta.id_wizyty}><Link href={`./appointments/${wizyta.id_wizyty}`}>{wizyta.powod_wizyty} ({wizyta.status_wizyty})</Link> - {wizyta.l_imie} {wizyta.l_nazwisko} </div>
-      )
-    }
+    <div key={wizyta.id_wizyty}><Link href={`./appointments/${wizyta.id_wizyty}`}>{wizyta.powod_wizyty} ({wizyta.status_wizyty})</Link> - {wizyta.l_imie} {wizyta.l_nazwisko} </div>
+    <form action={async () => {
+      "use server"
+
+      const connection = await mysql.createConnection(db_settings);
+      await connection.execute("UPDATE wizyta SET wizyta.status_wizyty = 'odwolana' WHERE wizyta.id_wizyty = ? ;", [appointment_id])
+    }}>
+      <input type="submit" id="delete" className="sr-only" />
+      <label htmlFor="delete">
+        <button className="bg-gray-500">Odwołaj wizyt</button>
+      </label>
+    </form>
 
   </main>
 }
