@@ -8,6 +8,11 @@ import { Session } from "@app/app/components/header";
 import { redirect } from "next/navigation";
 import { Wizyta } from "@app/app/shared/types";
 
+interface WizytaPremium extends Wizyta {
+  // po inner joinie
+  l_imie: string;
+  l_nazwisko: string;
+}
 
 export default async function Page() {
   const sessionCookie = getCookie(await headers(), 'session');
@@ -28,16 +33,14 @@ export default async function Page() {
   //@ts-ignore
   const pacjent = pacjenty[0]
 
-  const [wizyty, _w] = await connection.execute(`SELECT * FROM wizyta WHERE id_pacjenta = ?`, [pacjent.id_pacjenta])
-
-  console.log(wizyty)
+  const [wizyty, _w] = await connection.execute(`SELECT wizyta.*, lekarz.imie AS l_imie, lekarz.nazwisko AS l_nazwisko FROM wizyta INNER JOIN lekarz ON wizyta.id_lekarza = lekarz.id_lekarza WHERE wizyta.id_pacjenta = ?;`, [pacjent.id_pacjenta])
 
 
   return <main className="min-h-[80vh] w-full flex flex-col justify-center items-center">
     {
       //@ts-ignore
       wizyty.map(
-        (wizyta: Wizyta) => <div key={wizyta.id_wizyty}>{wizyta.powod_wizyty} {wizyta.status_wizyty}</div>
+        (wizyta: WizytaPremium) => <div key={wizyta.id_wizyty}>{wizyta.powod_wizyty} ({wizyta.status_wizyty}) - {wizyta.l_imie} {wizyta.l_nazwisko} </div>
       )
     }
 
