@@ -40,7 +40,7 @@ export default async function Page() {
     {
       //@ts-ignore
       wizyty.map(
-        (wizyta: WizytaPremium) => <div key={wizyta.id_wizyty} className="bg-white rounded-md shadow-md p-4 m-2 w-full"><h2 className="text-2xl p-2 mb-4">{wizyta.powod_wizyty}</h2> <div className="flex justify-between"> <p className="text-gray-600 basis-[40%]">({wizyta.status_wizyty}) - {wizyta.l_imie} {wizyta.l_nazwisko}</p><Link href="/profile/appointments/{wizyta.id_wizyty}" className="w-[100%] text-right text-sky-600 hover:text-lg hover:underline">Idź do wizyty</Link> </div></div>
+        (wizyta: WizytaPremium) => <div key={wizyta.id_wizyty} className="bg-white rounded-md shadow-md p-4 m-2 w-full"><h2 className="text-2xl p-2 mb-4">{wizyta.powod_wizyty}</h2> <div className="flex justify-between"> <p className="text-gray-600 basis-[40%]">({wizyta.status_wizyty}) - {wizyta.l_imie} {wizyta.l_nazwisko}</p><Link href={`/profile/appointments/${wizyta.id_wizyty}`} className="w-[100%] text-right text-sky-600 hover:text-lg hover:underline">Idź do wizyty</Link> </div></div>
       )
     }
 
