@@ -23,6 +23,7 @@ export default async function Page() {
 
   const [lekarze, _l] = await connection.execute(`SELECT * FROM lekarz;`);
   const [pacjent, _p] = await connection.execute(`SELECT * FROM pacjent WHERE email=?;`, [session.username]);
+  //@ts-ignore
   const uid = pacjent[0].id_pacjenta // id użytkownika za którego jestem zalogowany
 
 
@@ -47,6 +48,7 @@ export default async function Page() {
     Lekarz:
     <select name="id_lekarza" className="p-2 border-2 rounded-md">
       {
+        //@ts-ignore
         lekarze.map(lekarz =>
           <option key={lekarz.id_lekarza} value={lekarz.id_lekarza}>{lekarz.imie} {lekarz.nazwisko}</option>
         )
