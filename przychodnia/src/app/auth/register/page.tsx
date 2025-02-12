@@ -9,8 +9,7 @@ export default function Register() {
           alt="main background"
           width="1920"
           height="953"
-          className="h-auto"
-          style="aspect-ratio: initial" />
+          className="h-auto aspect-[initial]" />
       </div>
       <RegisterForm />
     </main>
