@@ -3,6 +3,7 @@ import { setCookie } from '../../lib/cookies';
 import mysql from "mysql2/promise";
 import { GetDBSettings, IDBSettings } from '../../shared/common';
 import { hash } from 'crypto';
+import { Pacjent } from '@app/app/shared/types';
 
 export interface LoginRoutePOSTData {
   password: string,
@@ -15,7 +16,7 @@ export async function POST(req: Request) {
   const connection = await mysql.createConnection(db_settings);
   const hashedPassword = hash("sha1", data.password)
   const values: string[] = [data.username, hashedPassword];
-  const [results] = await connection.execute(`SELECT * FROM pacjent WHERE pacjent.email = ? AND pacjent.haslo = ? ;`, values);
+  const [results] = await connection.execute(`SELECT * FROM pacjent WHERE pacjent.email = ? AND pacjent.haslo = ? ;`, values) as unknown as [Pacjent[], never];
 
   if (results.length === 1) {
     const username: string = data.username;
@@ -24,6 +25,6 @@ export async function POST(req: Request) {
     console.log(res);
     return res;
   }
-  
+
   return NextResponse.json({ message: 'Unauthorized' }, { status: 401 });
 }

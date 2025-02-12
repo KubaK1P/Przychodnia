@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import mysql from "mysql2/promise";
 import { GetDBSettings, IDBSettings } from '../../shared/common';
 import { hash } from "crypto";
-import process from "process";
+import { Pacjent } from "@app/app/shared/types";
 
 export interface RegistrationRoutePOSTData {
   password: string,
@@ -23,8 +23,7 @@ export async function POST(request: NextRequest) {
   console.log(db_settings)
   const connection = await mysql.createConnection(db_settings);
 
-  let values: string[] = [data.email];
-  let [results] = await connection.execute(`SELECT * FROM pacjent WHERE pacjent.email = ? ;`, values);
+  const [results] = await connection.execute(`SELECT * FROM pacjent WHERE pacjent.email = ? ;`, [data.email]) as [Pacjent[], never];
   if (results.length !== 0) {
     const response = {
       error: `There is an user with email ${data.email}`,
@@ -34,9 +33,13 @@ export async function POST(request: NextRequest) {
     return NextResponse.json(response, { status: 409 });
   }
   const hashedPassword: string = hash("sha1", data.password)
+
   // todo: validate the data
-  values = [data.firstName, data.lastName, data.date, data.pesel, data.adress, data.phone, data.email, hashedPassword];
-  [results] = await connection.execute(`INSERT INTO pacjent VALUES (null, ? , ? , ? , ? , ? , ? , ? , ? );`, values);
+  // yea, good idea! Validate it!
+  const values = [data.firstName, data.lastName, data.date, data.pesel, data.adress, data.phone, data.email, hashedPassword];
+
+  // bruh, insert nic nie zwraca
+  await connection.execute(`INSERT INTO pacjent VALUES (null, ? , ? , ? , ? , ? , ? , ? , ? );`, values);
   const response = {
     message: `success?`,
 

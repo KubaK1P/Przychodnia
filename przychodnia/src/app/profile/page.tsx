@@ -7,7 +7,7 @@ interface Session {
 }
 
 export default async function Profile() {
-  const sessionCookie = getCookie(headers(), 'session');
+  const sessionCookie = getCookie(await headers(), 'session');
 
   // If no session cookie is found, redirect to login page
   if (!sessionCookie) {
@@ -16,14 +16,14 @@ export default async function Profile() {
   }
 
   // Directly use the session object without JSON.parse since getCookie already handles the parsing
-    //   const session: Session = typeof sessionCookie === 'object' ? sessionCookie : { username: '' };
-    const session = sessionCookie as Session;
+  //   const session: Session = typeof sessionCookie === 'object' ? sessionCookie : { username: '' };
+  const session = sessionCookie as Session;
 
   return (<main className="w-2/3 flex flex-wrap m-4 min-h-[90vh]">
-    <h1>Welcome, {session.username}</h1> 
-    
+    <h1>Welcome, {session.username}</h1>
+
     <p><br />Here will be user data probably</p>
-    </main>
+  </main>
   );
 }
 
