@@ -21,7 +21,7 @@ export default async function Profile() {
 
   return (<div className="w-2/3 flex flex-wrap m-4 min-h-[90vh] bg-white rounded-md shadow-lg p-4 ">
     <h1 className='text-[300%]'>Konto {session.username}</h1>
-    <div className="rounded-md shadow-lg"
+    <div className="rounded-md shadow-lg h-[300px]"
     >    <Image
       src="/poczekalnia.jpg"
       alt="poczekalnia"

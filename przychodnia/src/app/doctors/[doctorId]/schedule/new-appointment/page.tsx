@@ -28,7 +28,7 @@ export default async function Page() {
 
 
 
-  return <main className="min-h-[80vh] w-full flex flex-col justify-center items-center"><form className="basis-1/2 w-[60%] p-4 rounded-md shadow-md bg-white mb-4 flex flex-col justify-evenly gap-4" action={async (d: FormData) => {
+  return <main className="mt-[104px] min-h-[80vh] w-full flex flex-col justify-center items-center"><form className="basis-1/2 w-[60%] p-4 rounded-md shadow-md bg-white mb-4 flex flex-col justify-evenly gap-4" action={async (d: FormData) => {
     "use server"
     const db_settings: IDBSettings = GetDBSettings();
     const connection = await mysql.createConnection(db_settings);

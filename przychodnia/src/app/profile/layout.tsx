@@ -5,7 +5,7 @@ export default function DashboardLayout({
 }: {
   children: React.ReactNode
 }) {
-  return (<div className="w-full mt-[104px] flex justify-evenly px-6">
+  return (<div className="w-full mt-[104px] flex px-6">
     <aside className="basis-[27%] self-start p-4">
 
       <nav className="bg-white rounded-md shadow-md p-4 m-2 ">
