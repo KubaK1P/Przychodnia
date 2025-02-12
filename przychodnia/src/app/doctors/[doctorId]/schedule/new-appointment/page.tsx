@@ -29,7 +29,7 @@ export default async function Page() {
 
 
 
-  return <main className="min-h-[80vh] w-full flex flex-col justify-center items-center"><form className="basis-1/2 w-[60%] p-4 rounded-md shadow-md bg-white mb-4 flex flex-col justify-evenly gap-4" action={createNewAppointmentAction(uid)}>
+  return <main className="mt-[104px] min-h-[80vh] w-full flex flex-col justify-center items-center"><form className="basis-1/2 w-[60%] p-4 rounded-md shadow-md bg-white mb-4 flex flex-col justify-evenly gap-4" action={createNewAppointmentAction(uid)}>
     <h1 className="text-2xl p-2">Umów wizytę</h1>
     <input type="date" name="data_wizyty" className="p-2 border-2 rounded-md" />
     <input type="text" name="powod_wizyty" placeholder="powód wizyty?" className="p-2 border-2 rounded-md" />

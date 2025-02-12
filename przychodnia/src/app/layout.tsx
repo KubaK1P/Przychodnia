@@ -27,7 +27,7 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-   // Access cookies from the request headers (server-side)
+  // Access cookies from the request headers (server-side)
   //  const sessionCookie = getCookie(headers(), 'session');
 
   //  // Check if the session exists and extract the username
@@ -35,10 +35,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased flex justify-center`}
-      > 
-        <div className=" w-full flex flex-wrap justify-center bg-sky-50 h-[100vh]">
-          <Header></Header>
+        className={`${geistSans.variable} ${geistMono.variable} antialiased `}
+      >
+        <Header></Header>
+        <div className=" w-full flex flex-wrap justify-center ">
           {children}
           <Footer />
         </div>

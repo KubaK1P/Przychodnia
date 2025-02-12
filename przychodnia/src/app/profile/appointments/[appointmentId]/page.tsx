@@ -42,9 +42,8 @@ export default async function Page({ params }: { params: Promise<{ appointmentId
   }
   const wizyta = wizyty[0];
 
-
   return <main className="min-h-[80vh] w-full flex flex-col justify-center items-center">
-    <div key={wizyta.id_wizyty}><Link href={`./appointments/${wizyta.id_wizyty}`}>{wizyta.powod_wizyty} ({wizyta.status_wizyty})</Link> - {wizyta.l_imie} {wizyta.l_nazwisko} </div>
+    <div key={wizyta.id_wizyty} className="flex flex-col gap-2 justify-between bg-white rounded-md shadow-md p-4 m-2 w-full"><h2 className="text-2xl p-2 mb-4">{wizyta.powod_wizyty} - {wizyta.data_wizyty.toLocaleDateString()} </h2><form className="flex flex-col gap-2"><label htmlFor="notes">Notatki:</label><textarea className="border-2 border-sky-600 rounded-md" cols={30} rows={5} id="notes" /></form>({wizyta.status_wizyty}) - {wizyta.l_imie} {wizyta.l_nazwisko} </div>
     <form action={async () => {
       "use server"
 
@@ -53,9 +52,9 @@ export default async function Page({ params }: { params: Promise<{ appointmentId
     }}>
       <input type="submit" id="delete" className="sr-only" />
       <label htmlFor="delete">
-        <button className="bg-gray-500">Odwołaj wizyt</button>
+        <button className="text-lg text-sky-600 hover:text-xl hover:underline">Odwołaj wizytę</button>
       </label>
     </form>
 
-  </main>
+  </main >
 }

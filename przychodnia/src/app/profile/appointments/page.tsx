@@ -34,13 +34,12 @@ export default async function Page() {
             ON wizyta.id_lekarza = lekarz.id_lekarza 
           WHERE wizyta.id_pacjenta = ?;`, [pacjent.id_pacjenta]) as unknown as [WizytaPremium[], never]
 
-
-
   return (<main className="min-h-[80vh] w-full flex flex-col justify-center items-center">
     {
-      wizyty.map(
-        (wizyta: WizytaPremium) => <div key={wizyta.id_wizyty} className="bg-white rounded-md shadow-md p-4 m-2 w-full"><h2 className="text-2xl p-2 mb-4">{wizyta.powod_wizyty}</h2> <div className="flex justify-between"> <p className="text-gray-600 basis-[40%]">({wizyta.status_wizyty}) - {wizyta.l_imie} {wizyta.l_nazwisko}</p><Link href={`/profile/appointments/${wizyta.id_wizyty}`} className="w-[100%] text-right text-sky-600 hover:text-lg hover:underline">Idź do wizyty</Link> </div></div>
-      )
+      wizyty.length ?
+        wizyty.map(
+          (wizyta: WizytaPremium) => <div key={wizyta.id_wizyty} className="bg-white rounded-md shadow-md p-4 m-2 w-full"><h2 className="text-2xl p-2 mb-4">{wizyta.powod_wizyty}</h2> <div className="flex justify-between"> <p className="text-gray-600 basis-[40%]">({wizyta.status_wizyty}) - {wizyta.l_imie} {wizyta.l_nazwisko}</p><Link href={`/profile/appointments/${wizyta.id_wizyty}`} className="w-[100%] text-right text-sky-600 hover:text-lg hover:underline">Idź do wizyty</Link> </div></div>
+        ) : <div className="bg-white rounded-md shadow-md p-4 m-2 w-full text-red-500">ni ma wizytuf</div>
     }
 
     <Link href="/profile" className="m-4 text-sky-600 hover:text-xl hover:underline">Wróć</Link>

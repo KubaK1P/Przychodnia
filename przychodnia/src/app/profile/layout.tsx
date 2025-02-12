@@ -5,8 +5,8 @@ export default function DashboardLayout({
 }: {
   children: React.ReactNode
 }) {
-  return (<>
-    <aside className="basis-[27%] self-start h-full p-4">
+  return (<div className="w-full mt-[104px] flex px-6">
+    <aside className="basis-[27%] self-start p-4">
 
       <nav className="bg-white rounded-md shadow-md p-4 m-2 ">
         <ul className="flex flex-col justify-evenly gap-4 text-lg text-sky-600">
@@ -19,6 +19,6 @@ export default function DashboardLayout({
     <main className="basis-[73%] p-4">
       {children}
     </main>
-  </>
+  </div>
   )
 }

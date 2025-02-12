@@ -22,8 +22,8 @@ const LoginForm = () => {
 
 
   return (
-    <div className="w-[100%] flex items-center justify-center bg-sky-100">
-      <div className="w-full max-w-md p-8 bg-white shadow-md rounded-lg">
+    <div className="w-[100%] flex items-center justify-center ">
+      <div className="w-full max-w-md p-8 bg-white shadow-md rounded-lg z-100">
         <h1 className="text-2xl font-bold text-center mb-6">Logowanie</h1>
         <form onSubmit={handleLogin} className="space-y-4">
           {/* Email */}
@@ -118,8 +118,8 @@ const RegisterForm = () => {
   };
 
   return (
-    <div className="w-[100%] flex items-center justify-center bg-sky-100">
-      <div className="w-full max-w-md p-8 bg-white shadow-md rounded-lg">
+    <div className="w-[100%] flex items-center justify-center mt-[120px]">
+      <div className="w-full max-w-md p-8 bg-white shadow-md rounded-lg z-[100]">
         <h1 className="text-2xl font-bold text-center mb-6">Rejestracja</h1>
         <form onSubmit={handleRegister} className="space-y-4">
           {/* First Name */}
