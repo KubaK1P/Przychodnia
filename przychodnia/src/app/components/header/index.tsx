@@ -2,7 +2,7 @@ import Link from "next/link";
 import { getCookie } from "@app/app/lib/cookies";
 import { headers } from "next/headers";
 // import { useEffect } from "react";
-
+import Image from "next/image";
 // export interface registrationGETResponseInterface {
 //   userExists: string
 // }
@@ -27,7 +27,13 @@ export const Header = async () => {
 
 
   return (
-    <header className="basis-[100%] w-full fixed top-0 flex flex-row items-center p-6 gap-2 bg-[#ffffff55] shadow-md rounded-md z-1000" id="header">
+    <header className="basis-[100%] w-full fixed top-0 flex flex-row items-center p-6 gap-2 bg-[#ffffff55] shadow-md rounded-md z-[1000]" id="header">
+      <Image
+        src="/logo.png"
+        alt="logo"
+        width="60"
+        height="60">
+      </Image>
       <Link href="/" className="font-xl text-2xl font-semibold text-slate-950 hover:underline mr-auto tracking-wide p-3">
         Przychodnia
       </Link>
@@ -35,7 +41,7 @@ export const Header = async () => {
         <>
           <Link
             href="/profile"
-            className=" p-1 rounded-md"
+            className=" p-1 rounded-md hover:text-blue-300"
           >
             Twoja tablica
           </Link>
@@ -45,7 +51,7 @@ export const Header = async () => {
           </div>
           <Link
             href="/auth/logout"
-            className=" p-1 rounded-md"
+            className=" p-1 rounded-md hover:text-blue-300"
           >
             Wyloguj się
           </Link>
@@ -55,13 +61,13 @@ export const Header = async () => {
         <>
           <Link
             href="/auth/login"
-            className="rounded-md p-3"
+            className="rounded-md p-3 hover:text-blue-300"
           >
             Zaloguj się
           </Link>
           <Link
             href="/auth/register"
-            className="rounded-md p-3"
+            className="rounded-md p-3 hover:text-blue-300"
           >
             Zarejestruj się
           </Link>
