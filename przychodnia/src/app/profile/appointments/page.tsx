@@ -6,13 +6,7 @@ import { headers } from "next/headers";
 import mysql from "mysql2/promise";
 import { Session } from "@app/app/components/header";
 import { redirect } from "next/navigation";
-import { Wizyta } from "@app/app/shared/types";
-
-interface WizytaPremium extends Wizyta {
-  // po inner joinie
-  l_imie: string;
-  l_nazwisko: string;
-}
+import { Pacjent, WizytaPremium } from "@app/app/shared/types";
 
 export default async function Page() {
   const sessionCookie = getCookie(await headers(), 'session');
@@ -29,12 +23,16 @@ export default async function Page() {
   const connection = await mysql.createConnection(db_settings);
 
 
-  const [pacjenty, _p] = await connection.execute(`SELECT * FROM pacjent WHERE email=?;`, [session.username]);
-  //@ts-ignore
+  const [pacjenty, _p] = await connection.execute(`SELECT * FROM pacjent WHERE email=?;`, [session.username]) as unknown as [Pacjent[], never];
+
   const pacjent = pacjenty[0]
 
-  const [wizyty, _w] = await connection.execute(`SELECT wizyta.*, lekarz.imie AS l_imie, lekarz.nazwisko AS l_nazwisko FROM wizyta INNER JOIN lekarz ON wizyta.id_lekarza = lekarz.id_lekarza WHERE wizyta.id_pacjenta = ?;`, [pacjent.id_pacjenta]) as unknown as [WizytaPremium[], undefined]
-
+  const [wizyty, _w] = await connection.execute(
+    `SELECT wizyta.*, lekarz.imie AS l_imie, lekarz.nazwisko AS l_nazwisko 
+          FROM wizyta 
+          INNER JOIN lekarz 
+            ON wizyta.id_lekarza = lekarz.id_lekarza 
+          WHERE wizyta.id_pacjenta = ?;`, [pacjent.id_pacjenta]) as unknown as [WizytaPremium[], never]
 
   return (<main className="min-h-[80vh] w-full flex flex-col justify-center items-center">
     {

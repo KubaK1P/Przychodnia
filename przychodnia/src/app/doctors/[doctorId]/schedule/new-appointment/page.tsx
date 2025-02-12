@@ -6,6 +6,8 @@ import { headers } from "next/headers";
 import mysql from "mysql2/promise";
 import { Session } from "@app/app/components/header";
 import { redirect } from "next/navigation";
+import { Lekarz, Pacjent } from "@app/app/shared/types";
+import { createNewAppointmentAction } from "./action";
 export default async function Page() {
   const sessionCookie = getCookie(await headers(), 'session');
   let session: Session; // zamorduje cię za te sesje
@@ -21,22 +23,13 @@ export default async function Page() {
   const connection = await mysql.createConnection(db_settings);
 
 
-  const [lekarze, _l] = await connection.execute(`SELECT * FROM lekarz;`);
-  const [pacjent, _p] = await connection.execute(`SELECT * FROM pacjent WHERE email=?;`, [session.username]);
-  //@ts-ignore
+  const [lekarze, _l] = await connection.execute(`SELECT * FROM lekarz;`) as unknown as [Lekarz[], never];
+  const [pacjent, _p] = await connection.execute(`SELECT * FROM pacjent WHERE email=?;`, [session.username]) as unknown as [Pacjent[], never];
   const uid = pacjent[0].id_pacjenta // id użytkownika za którego jestem zalogowany
 
 
 
-  return <main className="mt-[104px] min-h-[80vh] w-full flex flex-col justify-center items-center"><form className="basis-1/2 w-[60%] p-4 rounded-md shadow-md bg-white mb-4 flex flex-col justify-evenly gap-4" action={async (d: FormData) => {
-    "use server"
-    const db_settings: IDBSettings = GetDBSettings();
-    const connection = await mysql.createConnection(db_settings);
-
-    await connection.execute(`INSERT INTO wizyta VALUES(null, ?, ?, ?, ?, ?) ;`, [d.get("data_wizyty")?.toString(), uid, d.get("id_lekarza")?.toString(), d.get("powod_wizyty")?.toString(), d.get("status_wizyty")?.toString()]);
-
-
-  }}>
+  return <main className="mt-[104px] min-h-[80vh] w-full flex flex-col justify-center items-center"><form className="basis-1/2 w-[60%] p-4 rounded-md shadow-md bg-white mb-4 flex flex-col justify-evenly gap-4" action={createNewAppointmentAction(uid)}>
     <h1 className="text-2xl p-2">Umów wizytę</h1>
     <input type="date" name="data_wizyty" className="p-2 border-2 rounded-md" />
     <input type="text" name="powod_wizyty" placeholder="powód wizyty?" className="p-2 border-2 rounded-md" />
@@ -48,7 +41,6 @@ export default async function Page() {
     Lekarz:
     <select name="id_lekarza" className="p-2 border-2 rounded-md">
       {
-        //@ts-ignore
         lekarze.map(lekarz =>
           <option key={lekarz.id_lekarza} value={lekarz.id_lekarza}>{lekarz.imie} {lekarz.nazwisko}</option>
         )

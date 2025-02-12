@@ -7,12 +7,11 @@ interface Session {
 }
 
 export default async function Profile() {
-  const sessionCookie = getCookie(headers(), 'session');
+  const sessionCookie = getCookie(await headers(), 'session');
 
   // If no session cookie is found, redirect to login page
   if (!sessionCookie) {
     redirect('auth/login');
-    return null;
   }
 
   // Directly use the session object without JSON.parse since getCookie already handles the parsing

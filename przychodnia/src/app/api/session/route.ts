@@ -13,7 +13,7 @@ import { headers } from 'next/headers';
 // }
 
 export async function GET() {
-  const requestHeaders = headers();
+  const requestHeaders = await headers();
   const session = getCookie(requestHeaders, 'session');
 
   if (session && typeof session === 'object') {

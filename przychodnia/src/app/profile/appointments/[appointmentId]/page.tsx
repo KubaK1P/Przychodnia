@@ -6,13 +6,7 @@ import { headers } from "next/headers";
 import mysql from "mysql2/promise";
 import { Session } from "@app/app/components/header";
 import { notFound, redirect } from "next/navigation";
-import { Wizyta } from "@app/app/shared/types";
-
-interface WizytaPremium extends Wizyta {
-  // po inner joinie
-  l_imie: string;
-  l_nazwisko: string;
-}
+import { Pacjent, WizytaPremium } from "@app/app/shared/types";
 
 export default async function Page({ params }: { params: Promise<{ appointmentId: string }> }) {
   const sessionCookie = getCookie(await headers(), 'session');
@@ -30,23 +24,24 @@ export default async function Page({ params }: { params: Promise<{ appointmentId
   const connection = await mysql.createConnection(db_settings);
 
 
-  const [pacjenty, _p] = await connection.execute(`SELECT * FROM pacjent WHERE email=?;`, [session.username]);
-  //@ts-ignorefor
+  const [pacjenty, _p] = await connection.execute(`SELECT * FROM pacjent WHERE email=?;`, [session.username]) as unknown as [Pacjent[], never];
   const pacjent = pacjenty[0]
 
   // two WHERE checks for security - user cannot view not own appointment
-  const [wizyty, _w] = await connection.execute(`SELECT wizyta.*, lekarz.imie AS l_imie, lekarz.nazwisko AS l_nazwisko FROM wizyta INNER JOIN lekarz ON wizyta.id_lekarza = lekarz.id_lekarza WHERE wizyta.id_pacjenta = ? AND wizyta.id_wizyty = ?;`, [pacjent.id_pacjenta, appointment_id])
+  const [wizyty, _w] = await connection.execute(
+    `SELECT wizyta.*, lekarz.imie AS l_imie, lekarz.nazwisko AS l_nazwisko 
+          FROM wizyta 
+          INNER JOIN lekarz 
+            ON wizyta.id_lekarza = lekarz.id_lekarza 
+          WHERE wizyta.id_pacjenta = ? AND wizyta.id_wizyty = ?;`,
+    [pacjent.id_pacjenta, appointment_id]) as unknown as [WizytaPremium[], never]
 
-  //@ts-ignore
   if (!wizyty.length) {
     notFound();
     // zwróci 404 i dokument not-found.tsx
   }
-  //@ts-ignore
-  const wizyta = wizyty[0] as unknown as WizytaPremium;
+  const wizyta = wizyty[0];
 
-
-  //@ts-ignore
   return <main className="min-h-[80vh] w-full flex flex-col justify-center items-center">
     <div key={wizyta.id_wizyty} className="flex flex-col gap-2 justify-between bg-white rounded-md shadow-md p-4 m-2 w-full"><h2 className="text-2xl p-2 mb-4">{wizyta.powod_wizyty} - {wizyta.data_wizyty.toLocaleDateString()} </h2><form className="flex flex-col gap-2"><label htmlFor="notes">Notatki:</label><textarea className="border-2 border-sky-600 rounded-md" cols={30} rows={5} id="notes" /></form>({wizyta.status_wizyty}) - {wizyta.l_imie} {wizyta.l_nazwisko} </div>
     <form action={async () => {

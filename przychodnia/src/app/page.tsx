@@ -9,8 +9,7 @@ export default function Home() {
           alt="main background"
           width="1920"
           height="953"
-          className="h-auto"
-          style="aspect-ratio: initial" />
+          className="h-auto aspect-[initial]" />
       </div>
       <h1 className=" text-6xl font-bold text-white tracking-wide">
         Przychodnia++
