@@ -27,7 +27,7 @@ export const Header = async () => {
 
 
   return (
-    <header className="basis-[100%] w-full  sticky top-0 flex flex-row items-center px-2 gap-2 bg-sky-400 h-[6%]">
+    <header className="basis-[100%] w-full fixed top-0 flex flex-row items-center p-6 gap-2 bg-[#ffffff55] shadow-md rounded-md z-1000" id="header">
       <Link href="/" className="font-xl text-2xl font-semibold text-slate-950 hover:underline mr-auto tracking-wide p-3">
         Przychodnia
       </Link>
