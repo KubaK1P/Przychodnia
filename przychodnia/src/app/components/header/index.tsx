@@ -1,7 +1,6 @@
 import Link from "next/link";
 import { getCookie } from "@app/app/lib/cookies";
 import { headers } from "next/headers";
-// import { useEffect } from "react";
 import Image from "next/image";
 // export interface registrationGETResponseInterface {
 //   userExists: string
@@ -24,7 +23,6 @@ export const Header = async () => {
 
   }
   // Check if the session exists and extract the username
-
 
   return (
     <header className="basis-[100%] w-full fixed top-0 flex flex-row items-center p-6 gap-2 bg-[#ffffff55] shadow-md rounded-md z-[1000]" id="header">
