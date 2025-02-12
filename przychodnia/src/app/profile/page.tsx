@@ -1,7 +1,7 @@
 import { getCookie } from '../lib/cookies';
 import { redirect } from 'next/navigation';
 import { headers } from 'next/headers';
-
+import Image from 'next/image';
 interface Session {
   username: string;
 }
@@ -16,14 +16,22 @@ export default async function Profile() {
   }
 
   // Directly use the session object without JSON.parse since getCookie already handles the parsing
-    //   const session: Session = typeof sessionCookie === 'object' ? sessionCookie : { username: '' };
-    const session = sessionCookie as Session;
+  //   const session: Session = typeof sessionCookie === 'object' ? sessionCookie : { username: '' };
+  const session = sessionCookie as Session;
 
-  return (<main className="w-2/3 flex flex-wrap m-4 min-h-[90vh]">
-    <h1>Welcome, {session.username}</h1> 
-    
-    <p><br />Here will be user data probably</p>
-    </main>
+  return (<main className="w-2/3 flex flex-wrap m-4 min-h-[90vh] bg-white rounded-md shadow-lg p-4">
+    <h1 className='text-[300%]'>Konto {session.username}</h1>
+    <div className="rounded-md shadow-lg"
+    >    <Image
+      src="/poczekalnia.jpg"
+      alt="poczekalnia"
+      width="500"
+      height="300"
+    >
+      </Image>
+    </div>
+    <p><br />Dodawanie wizyt można zrealizować przez menu nawigacyjne po lewej stronie</p>
+  </main>
   );
 }
 

@@ -33,15 +33,15 @@ export default async function Page() {
   //@ts-ignore
   const pacjent = pacjenty[0]
 
-  const [wizyty, _w] = await connection.execute(`SELECT wizyta.*, lekarz.imie AS l_imie, lekarz.nazwisko AS l_nazwisko FROM wizyta INNER JOIN lekarz ON wizyta.id_lekarza = lekarz.id_lekarza WHERE wizyta.id_pacjenta = ?;`, [pacjent.id_pacjenta])
+  const [wizyty, _w] = await connection.execute(`SELECT wizyta.*, lekarz.imie AS l_imie, lekarz.nazwisko AS l_nazwisko FROM wizyta INNER JOIN lekarz ON wizyta.id_lekarza = lekarz.id_lekarza WHERE wizyta.id_pacjenta = ?;`, [pacjent.id_pacjenta]) as unknown as [WizytaPremium[], undefined]
 
 
   return (<main className="min-h-[80vh] w-full flex flex-col justify-center items-center">
     {
-      //@ts-ignore
-      wizyty.map(
-        (wizyta: WizytaPremium) => <div key={wizyta.id_wizyty} className="bg-white rounded-md shadow-md p-4 m-2 w-full"><h2 className="text-2xl p-2 mb-4">{wizyta.powod_wizyty}</h2> <div className="flex justify-between"> <p className="text-gray-600 basis-[40%]">({wizyta.status_wizyty}) - {wizyta.l_imie} {wizyta.l_nazwisko}</p><Link href={`/profile/appointments/${wizyta.id_wizyty}`} className="w-[100%] text-right text-sky-600 hover:text-lg hover:underline">Idź do wizyty</Link> </div></div>
-      )
+      wizyty.length ?
+        wizyty.map(
+          (wizyta: WizytaPremium) => <div key={wizyta.id_wizyty} className="bg-white rounded-md shadow-md p-4 m-2 w-full"><h2 className="text-2xl p-2 mb-4">{wizyta.powod_wizyty}</h2> <div className="flex justify-between"> <p className="text-gray-600 basis-[40%]">({wizyta.status_wizyty}) - {wizyta.l_imie} {wizyta.l_nazwisko}</p><Link href={`/profile/appointments/${wizyta.id_wizyty}`} className="w-[100%] text-right text-sky-600 hover:text-lg hover:underline">Idź do wizyty</Link> </div></div>
+        ) : <div className="bg-white rounded-md shadow-md p-4 m-2 w-full text-red-500">ni ma wizytuf</div>
     }
 
     <Link href="/profile" className="m-4 text-sky-600 hover:text-xl hover:underline">Wróć</Link>
