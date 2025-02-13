@@ -7,12 +7,12 @@ import Footer from "./components/footer";
 // import { headers } from 'next/headers';
 
 const geistSans = localFont({
-  src: "./fonts/GeistVF.woff",
+  src: "./fonts/Poppins-Regular.ttf",
   variable: "--font-geist-sans",
   weight: "100 900",
 });
 const geistMono = localFont({
-  src: "./fonts/GeistMonoVF.woff",
+  src: "./fonts/Poppins-SemiBold.ttf",
   variable: "--font-geist-mono",
   weight: "100 900",
 });

@@ -11,7 +11,7 @@ export default function Home() {
           height="953"
           className="h-auto aspect-[initial]" />
       </div>
-      <h1 className=" text-6xl font-bold text-white tracking-wide">
+      <h1 className=" text-[700%] font-black text-black tracking-wide">
         Przychodnia++
       </h1>
     </main>
